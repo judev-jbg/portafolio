@@ -6,81 +6,64 @@ document.addEventListener("DOMContentLoaded", () => {
   const themeIconHeader = themeToggleHeader.querySelector("i");
   const imgFooter = document.querySelector(".footer__img > img");
 
-  const savedTheme = localStorage.getItem("theme") || "light";
-  if (savedTheme === "dark") {
-    document.body.classList.add("dark-theme");
-    themeIcon.classList.remove("ri-moon-line");
-    themeIcon.classList.add("ri-sun-line");
-    themeIconHeader.classList.remove("ri-moon-line");
-    themeIconHeader.classList.add("ri-sun-line");
-    imgFooter.setAttribute(
-      "src",
-      imgFooter.getAttribute("src").replace("Light", "Black")
-    );
+  // Función reutilizable para cambiar tema
+  function toggleTheme() {
+    const isDark = document.body.classList.toggle("dark-theme");
+    const themeValue = isDark ? "dark" : "light";
+
+    // Actualizar iconos
+    [themeIcon, themeIconHeader].forEach((icon) => {
+      icon.classList.toggle("ri-moon-line", !isDark);
+      icon.classList.toggle("ri-sun-line", isDark);
+    });
+
+    // Actualizar imagen del footer
+    const currentSrc = imgFooter.getAttribute("src");
+    const newSrc = isDark
+      ? currentSrc.replace("Light", "Black")
+      : currentSrc.replace("Black", "Light");
+    imgFooter.setAttribute("src", newSrc);
+
+    // Guardar preferencia
+    localStorage.setItem("theme", themeValue);
   }
 
-  themeToggle.addEventListener("click", () => {
-    document.body.classList.toggle("dark-theme");
-    if (document.body.classList.contains("dark-theme")) {
-      themeIcon.classList.remove("ri-moon-line");
-      themeIcon.classList.add("ri-sun-line");
-      imgFooter.setAttribute(
-        "src",
-        imgFooter.getAttribute("src").replace("Light", "Black")
-      );
-      localStorage.setItem("theme", "dark");
-    } else {
-      themeIcon.classList.remove("ri-sun-line");
-      themeIcon.classList.add("ri-moon-line");
-      imgFooter.setAttribute(
-        "src",
-        imgFooter.getAttribute("src").replace("Black", "Light")
-      );
-      localStorage.setItem("theme", "light");
-    }
-  });
-  themeToggleHeader.addEventListener("click", () => {
-    document.body.classList.toggle("dark-theme");
-    if (document.body.classList.contains("dark-theme")) {
-      themeIconHeader.classList.remove("ri-moon-line");
-      themeIconHeader.classList.add("ri-sun-line");
-      imgFooter.setAttribute(
-        "src",
-        imgFooter.getAttribute("src").replace("Light", "Black")
-      );
-      localStorage.setItem("theme", "dark");
-    } else {
-      themeIconHeader.classList.remove("ri-sun-line");
-      themeIconHeader.classList.add("ri-moon-line");
-      imgFooter.setAttribute(
-        "src",
-        imgFooter.getAttribute("src").replace("Black", "Light")
-      );
-      localStorage.setItem("theme", "light");
-    }
-  });
+  // Aplicar tema guardado al cargar
+  const savedTheme = localStorage.getItem("theme") || "light";
+  if (savedTheme === "dark") {
+    toggleTheme();
+  }
+
+  // Event listeners para ambos toggles
+  themeToggle.addEventListener("click", toggleTheme);
+  themeToggleHeader.addEventListener("click", toggleTheme);
 
   // Navigation Active Class
   const navItems = document.querySelectorAll(".nav__item");
+
+  // Función para cambiar estado del icono
+  function updateNavIcon(navItem, iconType) {
+    const icon = navItem.querySelector("a > div > i");
+    const currentClass = icon.getAttribute("class");
+    const newClass = iconType === "fill"
+      ? currentClass.replace("line", "fill")
+      : currentClass.replace("fill", "line");
+
+    icon.classList.remove(currentClass);
+    icon.classList.add(newClass);
+  }
+
   navItems.forEach((item) => {
     item.addEventListener("click", () => {
-      let navItemClassIcon = "";
+      // Desactivar todos los items
       navItems.forEach((nav) => {
-        navItemClassIcon = nav
-          .querySelector("a > div > i")
-          .getAttribute("class");
-        const newNavItemClassIcon = navItemClassIcon.replace("fill", "line");
-        nav.querySelector("a > div > i").classList.remove(navItemClassIcon);
-        nav.querySelector("a > div > i").classList.add(newNavItemClassIcon);
         nav.classList.remove("active");
+        updateNavIcon(nav, "line");
       });
+
+      // Activar item actual
       item.classList.add("active");
-      navItemClassIcon = item
-        .querySelector("a > div > i")
-        .getAttribute("class");
-      const newNavItemClassIcon = navItemClassIcon.replace("line", "fill");
-      item.querySelector("a > div > i").classList.remove(navItemClassIcon);
-      item.querySelector("a > div > i").classList.add(newNavItemClassIcon);
+      updateNavIcon(item, "fill");
     });
   });
 
@@ -100,7 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function validateForm() {
     const fullName = document.getElementById("fullName");
     const email = document.getElementById("email");
-    const text = document.getElementById("fullName");
+    const message = document.getElementById("message");
     let valid = true;
 
     if (!fullName.value.trim() || /\d/.test(fullName.value)) {
@@ -119,13 +102,13 @@ document.addEventListener("DOMContentLoaded", () => {
     email.nextElementSibling.classList.remove("error");
     email.nextElementSibling.nextElementSibling.classList.remove("error");
 
-    if (!text.value.trim()) {
-      showError(text, "Mensaje no puede estar vacío");
+    if (!message.value.trim()) {
+      showError(message, "Mensaje no puede estar vacío");
       valid = false;
       return;
     }
-    text.nextElementSibling.classList.remove("error");
-    text.nextElementSibling.nextElementSibling.classList.remove("error");
+    message.nextElementSibling.classList.remove("error");
+    message.nextElementSibling.nextElementSibling.classList.remove("error");
 
     if (valid) {
       // Ejecutar reCAPTCHA v3 antes de enviar el formulario

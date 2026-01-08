@@ -1,0 +1,23 @@
+# robots.txt para juniorbalcazarbc.com
+
+User-agent: *
+Allow: /
+
+# Bloquear acceso a directorios internos
+Disallow: /assets/doc/
+
+# Sitemap
+Sitemap: https://www.juniorbalcazarbc.com/sitemap.xml
+
+# Directivas para bots específicos
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# Prevenir indexación de parámetros innecesarios
+Disallow: /*?
+
+# Crawl-delay (opcional, ajustar si es necesario)
+# Crawl-delay: 10

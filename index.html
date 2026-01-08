@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Ingeniero de software con una solida experiencia desarrollo de software, ingenieria de datos y reporting. Habilidad analítica, capacidad de decisión y trabajo en equipo."
+      content="Ingeniero de software con una sólida experiencia en desarrollo de software, ingeniería de datos y reporting. Habilidad analítica, capacidad de decisión y trabajo en equipo."
     />
     <meta
       name="keywords"
@@ -22,7 +22,7 @@
     />
     <meta
       property="og:description"
-      content="Ingeniero de software con una solida experiencia desarrollo de software, ingenieria de datos y reporting. Habilidad analítica, capacidad de decisión y trabajo en equipo."
+      content="Ingeniero de software con una sólida experiencia en desarrollo de software, ingeniería de datos y reporting. Habilidad analítica, capacidad de decisión y trabajo en equipo."
     />
     <meta property="og:url" content="https://www.juniorbalcazarbc.com" />
     <meta property="og:site_name" content="Junior Balcázar Gonzales" />
@@ -37,7 +37,7 @@
     />
     <meta
       name="twitter:description"
-      content="Ingeniero de software con una solida experiencia desarrollo de software, ingenieria de datos y reporting. Habilidad analítica, capacidad de decisión y trabajo en equipo."
+      content="Ingeniero de software con una sólida experiencia en desarrollo de software, ingeniería de datos y reporting. Habilidad analítica, capacidad de decisión y trabajo en equipo."
     />
     <meta
       name="twitter:image"
@@ -45,8 +45,17 @@
     />
 
     <link rel="canonical" href="https://juniorbalcazarbc.com" />
+
+    <!-- Preload recursos críticos -->
+    <link rel="preload" href="./assets/css/main.css" as="style" />
+    <link rel="preload" href="./assets/img/img-hero.png" as="image" />
+
+    <!-- Preconnect para recursos externos -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+    <link rel="preconnect" href="https://www.google.com" />
+
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
       rel="stylesheet"
@@ -138,6 +147,8 @@
             <img
               src="./assets/img/img-hero.png"
               alt="Foto de Junior Balcázar - Sección hero"
+              width="400"
+              height="400"
             />
           </figure>
           <div class="hero__data">
@@ -152,16 +163,40 @@
               ><span class="finalPoint"></span>
             </h3>
             <span class="hero__social">
-              <a href="" class="hero__social-link">
+              <a
+                href="https://www.linkedin.com/in/jbgonzales/"
+                class="hero__social-link"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
+              >
                 <i class="ri-linkedin-fill"></i>
               </a>
-              <a href="" class="hero__social-link">
+              <a
+                href="https://www.github.com/judev-jbg"
+                class="hero__social-link"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub"
+              >
                 <i class="ri-github-fill"></i>
               </a>
-              <a href="" class="hero__social-link">
+              <a
+                href="https://www.instagram.com/jbgonzales_"
+                class="hero__social-link"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+              >
                 <i class="ri-instagram-line"></i>
               </a>
-              <a href="" class="hero__social-link">
+              <a
+                href="https://www.facebook.com/jbgonzales007"
+                class="hero__social-link"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Facebook"
+              >
                 <i class="ri-facebook-fill"></i>
               </a>
             </span>
@@ -209,6 +244,9 @@
             <img
               src="./assets/img/img-about-light.png"
               alt="Foto de Junior Balcázar con un portátil- Sección Sobre mí"
+              loading="lazy"
+              width="500"
+              height="500"
             />
           </figure>
         </div>
@@ -362,33 +400,44 @@
           <img
             src="./assets/img/LogoJudevCompletoLight.png"
             alt="Logotipo de Judev - Footer"
+            loading="lazy"
+            width="200"
+            height="60"
           />
         </figure>
         <span class="footer__social">
           <a
-            href="https://www.linkedin.com/in/juniorbalcazargonzales"
+            href="https://www.linkedin.com/in/jbgonzales/"
             class="footer__social-link"
+            target="_blank"
+            rel="noopener noreferrer"
             aria-label="LinkedIn"
           >
             <i class="ri-linkedin-fill"></i>
           </a>
           <a
-            href="https://github.com/juniorbalcazar"
+            href="https://www.github.com/judev-jbg"
             class="footer__social-link"
+            target="_blank"
+            rel="noopener noreferrer"
             aria-label="GitHub"
           >
             <i class="ri-github-fill"></i>
           </a>
           <a
-            href="https://www.instagram.com/juniorbalcazar"
+            href="https://www.instagram.com/jbgonzales_"
             class="footer__social-link"
+            target="_blank"
+            rel="noopener noreferrer"
             aria-label="Instagram"
           >
             <i class="ri-instagram-line"></i>
           </a>
           <a
-            href="https://www.facebook.com/juniorbalcazar"
+            href="https://www.facebook.com/jbgonzales007"
             class="footer__social-link"
+            target="_blank"
+            rel="noopener noreferrer"
             aria-label="Facebook"
           >
             <i class="ri-facebook-fill"></i>
@@ -406,15 +455,15 @@
     <script src="./assets/js/cardMove.js"></script>
     <script type="application/ld+json">
       {
-        "@context": "http://schema.org",
+        "@context": "https://schema.org",
         "@type": "Person",
         "name": "Junior Balcázar Gonzales",
         "url": "https://www.juniorbalcazarbc.com",
         "sameAs": [
-          "https://www.linkedin.com/in/juniorbalcazargonzales",
-          "https://github.com/juniorbalcazar",
-          "https://www.instagram.com/juniorbalcazar",
-          "https://www.facebook.com/juniorbalcazar"
+          "https://www.linkedin.com/in/jbgonzales/",
+          "https://www.github.com/judev-jbg",
+          "https://www.instagram.com/jbgonzales_",
+          "https://www.facebook.com/jbgonzales007"
         ],
         "jobTitle": "Ingeniero de Software",
         "worksFor": {
